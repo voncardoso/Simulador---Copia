@@ -15,9 +15,9 @@ export function Home(){
     const [corIndexPre, setCorIndexPre] = useState('#EFEFEF');
     const [corIndexPos, setCorIndexPos] = useState('#ED8E53');
     const [corIndexFixado, setCorIndexFixado] = useState('#EFEFEF');
-    const [texteCorIndexPre , setTextCor1IndexPre] = useState('');
-    const [texteCorIndexPos, setTextCorIndexPos] = useState('');
-    const [texteCorIndexFixado , setTextCor1IndexFixado] = useState('');
+    const [texteCorIndexPre , setTextCorIndexPre] = useState('#000000');
+    const [texteCorIndexPos, setTextCorIndexPos] = useState('#EFEFEF');
+    const [texteCorIndexFixado , setTextCor1IndexFixado] = useState('#000000');
     
 
     function handleClickRendimento(event: any){
@@ -113,16 +113,21 @@ export function Home(){
                                     onClick={(event)=>{
                                         event.preventDefault()
                                         if(corIndexPre === '#EFEFEF'){
-                                            console.log('pre');
+                                            setTextCorIndexPre('#EFEFEF')
                                             setCorIndexPre('#ED8E53');
                                             setCorIndexFixado('#EFEFEF');
                                             setCorIndexPos('#EFEFEF');
+                                            setTextCorIndexPos('#000000');
+                                            setTextCor1IndexFixado('#000000');
                                         }else{
                                             setCorIndexPre('#ED8E53');
                                         }
                                     }}
-                                    style={{background: corIndexPre, color: texteCorLiquido}}
+                                    style={{background: corIndexPre, color: texteCorIndexPre}}
                                     >
+                                        <IconContext.Provider value={{ color: "#EFEFEF", className: "IconButton" }}>
+                                        <AiOutlineCheck size={15}  />
+                                        </IconContext.Provider>
                                         PRE
                                     </button>
                                     <button 
@@ -135,10 +140,16 @@ export function Home(){
                                             setCorIndexPos('#ED8E53');
                                             setCorIndexPre('#EFEFEF');
                                             setCorIndexFixado('#EFEFEF');
+                                            setTextCorIndexPos('#EFEFEF');
+                                            setTextCorIndexPre('#000000');
+                                            setTextCor1IndexFixado('#000000');
                                         }
                                     }}
-                                    style={{background: corIndexPos, color: texteCorLiquido, borderRadius: '0px'}}
+                                    style={{background: corIndexPos, color: texteCorIndexPos, borderRadius: '0px', borderLeft:'2px solid #000000', borderRight:'2px solid #000000'}}
                                     >
+                                        <IconContext.Provider value={{ color: "#EFEFEF", className: "IconButton" }}>
+                                        <AiOutlineCheck size={15}  />
+                                        </IconContext.Provider>
                                         POS
                                     </button>
                                     <button 
@@ -147,14 +158,20 @@ export function Home(){
                                         event.preventDefault();
                                         if(corIndexFixado === '#EFEFEF'){
                                             setCorIndexFixado('#ED8E53');
+                                            setTextCorIndexPre('#000000');
                                             setCorIndexPos('#EFEFEF');
-                                            setCorIndexPre('#EFEFEF')
+                                            setCorIndexPre('#EFEFEF');
+                                            setTextCorIndexPos('#000000');
+                                            setTextCor1IndexFixado('#EFEFEF');
                                         }else{
                                             setCorIndexFixado('#ED8E53');
                                         }
                                     }}
-                                    style={{background: corIndexFixado, color: texteCorLiquido}}
+                                    style={{background: corIndexFixado, color: texteCorIndexFixado}}
                                     >
+                                        <IconContext.Provider value={{ color: "#EFEFEF", className: "IconButton" }}>
+                                        <AiOutlineCheck size={15}  />
+                                        </IconContext.Provider>
                                         FIXADO
                                     </button>
                                 </div>

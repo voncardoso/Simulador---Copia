@@ -43,10 +43,10 @@ export const Content = styled.div`
                     h2{
                         margin-bottom: 20px;
                         margin-top: 50px;
-                        weight: 100%;
+                        
                     }
                     li{
-                        width: 220px;
+                        width: 280px;
 
                         .texteIcon{
                             display: flex;
@@ -66,8 +66,8 @@ export const Content = styled.div`
                             margin-bottom: 40px;
                             column-gap: 0px;
                             button{
-                                width: 100%;
-                                padding: 15px 20px;
+                                width: 80%;
+                                padding: 18px 25px;
                                 text-align: center;
                                 border: none;
                                 border-radius: 10px 0px 0px 10px;
@@ -75,7 +75,7 @@ export const Content = styled.div`
                                 font-size: 0.875rem;                   
                             }
                             button+button{
-                               
+                               border-left: 2px solid #000000;
                                 border-radius: 0px 10px 10px 0px;
                                 color: var(--Tex-secundary)
                             }
@@ -113,12 +113,12 @@ export const Content = styled.div`
                 width: 100%;
                 border: 2px solid #000000;
                 margin: 0px;
-                border-radius: 10px;
+                border-radius: 12px;
                 margin-bottom: 40px;
                 column-gap: 0px;
                 button{
-                    width: 90%;
-                    padding: 15px 18px;
+                    width: 80%;
+                    padding: 20px 10px;
                     text-align: center;
                     border: none;
                     border-radius: 10px 0px 0px 10px;
@@ -134,28 +134,34 @@ export const Content = styled.div`
           
         .buttomSimular
         { 
+            font-weight: bold;
             border: 2px solid var(--Tex);
+            background: var(--Button-secundario);
             top: 1px;
-            max-width: 270px;
+            max-width: 300px;
             position: relative;
-            right: 42px;
+            right: 15px;
             width: 100%;
             padding: 15px 0;
             font-size: 1rem;
             border-radius: 10px;
+        }
+        .buttomSimular:hover{
+            background: var(--Button);
         }
         .buttomLimpar
         { 
             border: 2px solid var(--Tex);
             top: 1px;
-            max-width: 270px;
+            max-width: 300px;
             width: 100%;
             padding: 15px 0;
             font-size: 1rem;
             border-radius: 10px;
         }
-
-
+        .buttomLimpar:hover{
+            background: var(--Button);
+        }
     }
         @media (max-width: 900px){
             color: red;
