@@ -5,27 +5,51 @@ import { IconContext } from "react-icons";
 import { useState } from 'react';
 
 export function Home(){
-    const [buttonRendimento, setButtonRendimento] = useState(false);
-    const [cor, setCor] = useState('#ED8E53');
-    const [cor1, setCor1] = useState('');
-    const [texteCor , setTextCor] = useState('');
-    const [texteCor1 , setTextCor1] = useState('');
+    // variaveis para alterar cor do butão do tipo de remdimento
+    const [corLiquido, setCorLiquido] = useState('#ED8E53');
+    const [corBruto, setCorBruto] = useState('');
+    const [texteCorLiquido , setTextCorLiquido] = useState('');
+    const [texteCorBruto , setTextCorBruto] = useState('');
 
-    function handleClickButtonRendimento(event: any){
+    // variaveis para alterar cor do butão doTipo de indexação
+    const [corIndexPre, setCorIndexPre] = useState('#EFEFEF');
+    const [corIndexPos, setCorIndexPos] = useState('#ED8E53');
+    const [corIndexFixado, setCorIndexFixado] = useState('#EFEFEF');
+    const [texteCorIndexPre , setTextCor1IndexPre] = useState('');
+    const [texteCorIndexPos, setTextCorIndexPos] = useState('');
+    const [texteCorIndexFixado , setTextCor1IndexFixado] = useState('');
+    
+
+    function handleClickRendimento(event: any){
         event.preventDefault();
-        if(cor === '#ED8E53'){
-            setCor1('#ED8E53');
-            setCor('#EFEFEF');
-            setTextCor('#000000');
-            setTextCor1('#EFEFEF');
+        if(corLiquido === '#ED8E53'){
+            setCorBruto('#ED8E53');
+            setCorLiquido('#EFEFEF');
+            setTextCorLiquido('#000000');
+            setTextCorBruto('#EFEFEF');
         }else{
-            setCor1('#EFEFEF');
-            setCor('#ED8E53');
-            setTextCor('#EFEFEF');
-            setTextCor1('#000000')
+            setCorBruto('#EFEFEF');
+            setCorLiquido('#ED8E53');
+            setTextCorLiquido('#EFEFEF');
+            setTextCorBruto('#000000')
         }
     }
-    console.log(cor);
+    
+    function handleClickTipoIndexacao(event:any){
+        event.preventDefault();
+
+        if(corIndexPos === '#ED8E53'){
+            setCorIndexPos('#EFEFEF');
+        }else{
+            setCorIndexPos('#ED8E53');
+            setCorIndexPre('#EFEFEF');
+        }
+        if(corIndexFixado === '#EFEFEF'){
+            setCorIndexFixado('#ED8E53');
+        }else{
+            setCorIndexFixado('#EFEFEF');
+        }
+    }
     return(
         <Container>
             <Content>
@@ -42,8 +66,8 @@ export function Home(){
                                     <FiAlertCircle />
                                 </div>
                                 <div className='texteButton'>
-                                    <button onClick={handleClickButtonRendimento}
-                                    style={{background: cor1, color: texteCor1}}
+                                    <button onClick={handleClickRendimento}
+                                    style={{background: corBruto, color: texteCorBruto}}
                                     >
                                         <IconContext.Provider value={{ color: "#EFEFEF", className: "IconButton" }}>
                                          <AiOutlineCheck size={15}  />
@@ -52,8 +76,8 @@ export function Home(){
                                     </button>
 
                                     <button 
-                                    onClick={handleClickButtonRendimento}
-                                    style={{background: cor, color: texteCor}}
+                                    onClick={handleClickRendimento}
+                                    style={{background: corLiquido, color: texteCorLiquido}}
                                     >
                                         <IconContext.Provider value={{ color: "#EFEFEF", className: "IconButton" }}>
                                          <AiOutlineCheck size={15}  />
@@ -85,9 +109,54 @@ export function Home(){
                                     <FiAlertCircle />
                                 </div>
                                 <div className='texteButton2'>
-                                    <button>PRE</button>
-                                    <button>POS</button>
-                                    <button className='ultimo'>FIXADO</button>
+                                    <button 
+                                    onClick={(event)=>{
+                                        event.preventDefault()
+                                        if(corIndexPre === '#EFEFEF'){
+                                            console.log('pre');
+                                            setCorIndexPre('#ED8E53');
+                                            setCorIndexFixado('#EFEFEF');
+                                            setCorIndexPos('#EFEFEF');
+                                        }else{
+                                            setCorIndexPre('#ED8E53');
+                                        }
+                                    }}
+                                    style={{background: corIndexPre, color: texteCorLiquido}}
+                                    >
+                                        PRE
+                                    </button>
+                                    <button 
+                                    
+                                    onClick={(event)=>{
+                                        event.preventDefault();
+                                        if(corIndexPos === '#ED8E53'){
+                                            
+                                        }else{
+                                            setCorIndexPos('#ED8E53');
+                                            setCorIndexPre('#EFEFEF');
+                                            setCorIndexFixado('#EFEFEF');
+                                        }
+                                    }}
+                                    style={{background: corIndexPos, color: texteCorLiquido, borderRadius: '0px'}}
+                                    >
+                                        POS
+                                    </button>
+                                    <button 
+                                    className='ultimo' 
+                                    onClick={(event)=>{
+                                        event.preventDefault();
+                                        if(corIndexFixado === '#EFEFEF'){
+                                            setCorIndexFixado('#ED8E53');
+                                            setCorIndexPos('#EFEFEF');
+                                            setCorIndexPre('#EFEFEF')
+                                        }else{
+                                            setCorIndexFixado('#ED8E53');
+                                        }
+                                    }}
+                                    style={{background: corIndexFixado, color: texteCorLiquido}}
+                                    >
+                                        FIXADO
+                                    </button>
                                 </div>
                         </li>
                             <li>
