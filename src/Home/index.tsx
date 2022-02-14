@@ -2,7 +2,9 @@ import {Container, Content, Simulacao } from './style';
 import { FiAlertCircle } from "react-icons/fi";
 import { AiOutlineCheck } from "react-icons/ai";
 import { IconContext } from "react-icons";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+
 
 export function Home(){
     // variaveis para alterar cor do butão do tipo de remdimento
@@ -19,6 +21,9 @@ export function Home(){
     const [texteCorIndexPos, setTextCorIndexPos] = useState('#EFEFEF');
     const [texteCorIndexFixado , setTextCor1IndexFixado] = useState('#000000');
     
+    const [indicadores, setIndicadores] = useState<any>([]);
+    const [cdi, setCdi] = useState<any>('');
+    const [ipca, setIpca] = useState<any>('');
 
     function handleClickRendimento(event: any){
         event.preventDefault();
@@ -34,22 +39,22 @@ export function Home(){
             setTextCorBruto('#000000')
         }
     }
-    
-    function handleClickTipoIndexacao(event:any){
-        event.preventDefault();
 
-        if(corIndexPos === '#ED8E53'){
-            setCorIndexPos('#EFEFEF');
-        }else{
-            setCorIndexPos('#ED8E53');
-            setCorIndexPre('#EFEFEF');
+     useEffect(()=>{
+         console.log('teste')
+        fetch('http://localhost:3000/indicadores')
+        .then((response: any) => response.json())
+        .then((json) => setIndicadores(json));
+    }, []);
+    useEffect(()=>{
+        if(indicadores[0]){
+            setCdi(indicadores[0])
         }
-        if(corIndexFixado === '#EFEFEF'){
-            setCorIndexFixado('#ED8E53');
-        }else{
-            setCorIndexFixado('#EFEFEF');
+        if(indicadores[1]){
+            setIpca(indicadores[1]);
         }
-    }
+    });
+  
     return(
         <Container>
             <Content>
@@ -91,12 +96,16 @@ export function Home(){
                                 <input type="text" id='aporte'/>
                             </li>
                             <li>
-                            <label htmlFor="">Aporte Inicial</label>
+                            <label htmlFor="">Prazo(em meses)</label>
                                 <input type="text" />
                             </li>
                             <li>
-                            <label htmlFor="">Aporte Inicial</label>
-                                <input type="text" />
+                            <label htmlFor="">IPCA(ao ano)</label>
+                                <input 
+                                    type="text" 
+                                    value={`${ipca.valor}%`}
+                                    disabled
+                                />
                             </li>
                         </ul>
                         
@@ -177,16 +186,21 @@ export function Home(){
                                 </div>
                         </li>
                             <li>
-                                <label htmlFor="aporte" >Aporte Inicial</label>
+                                <label htmlFor="aporte" >Aporte Mensal</label>
                                 <input type="text" id='aporte'/>
                             </li>
                             <li>
-                            <label htmlFor="">Aporte Inicial</label>
+                            <label htmlFor="">Rentabilidade</label>
                                 <input type="text" />
                             </li>
                             <li>
-                            <label htmlFor="">Aporte Inicial</label>
-                                <input type="text" />
+                            <label htmlFor="">CDI(ao ano)</label>
+                            <input 
+                                
+                                type="text" 
+                                value={`${cdi.valor}%`}
+                                disabled
+                            />        
                             </li>
                         </ul>
                         <button className='buttomLimpar'>Limpar Campos</button>
@@ -196,12 +210,30 @@ export function Home(){
                 <Simulacao>
                     <h2>Simulador</h2>
                     <ul>
-                        <li>fsafasfs</li>
-                        <li>asfdasfasf</li>
-                        <li>asfasfasfasfas</li>
-                        <li>asfasfasfasfa</li>
-                        <li>asfasfasfasfas</li>
-                        <li>asfasfasfasas</li>
+                        <li>
+                            Valor Final Bruto
+                            <p>R$ 15.465135,27</p>
+                        </li>
+                        <li>
+                            Alíquota do IR
+                            <p>R$ 15.465135,27</p>
+                        </li>
+                        <li>
+                            Valor Pago em IR
+                            <p>R$ 15.465135,27</p>
+                        </li>
+                        <li>
+                            Valor Final Líquido
+                            <p className='Pgreen'>R$ 15.465135,27</p>
+                        </li>
+                        <li>
+                            Valor Total Investido 
+                            <p>R$ 15.465135,27</p>
+                        </li>
+                        <li>
+                            Ganho Líquido
+                            <p className='Pgreen'>R$ 15.465135,27</p>
+                        </li>
                     </ul>
                 </Simulacao>
                 </div>

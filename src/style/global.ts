@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
         --Tex: #000000;
         --Valores: #62B154;
         --Tex-secundary: #FFFFFF;
+        --BoxSimulacao: #F4F4F4;
    }
    
    *{

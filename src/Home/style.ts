@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.section`
     max-width: 1570px;
+    margin: 0 auto;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -13,9 +14,9 @@ export const Container = styled.section`
 
 
 export const Content = styled.div`
-    max-width: 1400px;
+    max-width: 1500px;
     width: 100%;
-    height: 90%;
+    height: 95%;
     background: var(--background-secondary);
     h1{
         text-align: center;
@@ -37,9 +38,9 @@ export const Content = styled.div`
             column-gap: 20px;
             margin-left: 40px;
             align-items: center;
-
+            max-width: 650px;
                 ul{
-
+                    
                     h2{
                         margin-bottom: 20px;
                         margin-top: 50px;
@@ -94,7 +95,9 @@ export const Content = styled.div`
                             margin-top: 20px;
                             outline: none;
                             font-size: 1rem;
-                            font-weight: normal;
+                            font-weight: 600;
+                            color: var(--Tex);
+                            padding-bottom: 5px;
                         }
                         input:focus{
                             border: none;
@@ -118,7 +121,7 @@ export const Content = styled.div`
                 column-gap: 0px;
                 button{
                     width: 80%;
-                    padding: 20px 10px;
+                    padding: 18px 10px;
                     text-align: center;
                     border: none;
                     border-radius: 10px 0px 0px 10px;
@@ -183,8 +186,8 @@ export const Content = styled.div`
 `;
 
 export const Simulacao = styled.section`
-   padding-right: 10px;
-   padding-left: 10px;
+   padding-right: 40px;
+   padding-left: 40px;
     h2{
         margin-top: 50px;
         margin-bottom: 20px;
@@ -198,9 +201,25 @@ export const Simulacao = styled.section`
         li{
             width: 60px;
             width: 100%;
-            background: red;
+            background: var(--BoxSimulacao);
             margin-bottom: 30px;
-            border-radius: 10px
+            box-shadow: 0px 0px 10px 0px rgb(44, 44, 44, 0.20);
+            text-align: center;
+            padding-top: 10px;
+            font-weight: bold;
+            p{
+                margin-top: 30px;
+                margin-bottom: 10px;
+                font-weight: normal;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+            .Pgreen{
+                color: var(--Valores);
+                padding-left: 5px;
+                padding-right: 5px;
+            }
         }
     }
+
 `;
