@@ -15,9 +15,10 @@ export const Container = styled.section`
 
 export const Content = styled.div`
     max-width: 1500px;
-    width: 100%;
+    width: 98%;
     height: 95%;
-    background: var(--background-secondary);
+   // background: red;
+   background: var(--background-secondary);
     h1{
         text-align: center;
         margin-top: 30px;
@@ -31,7 +32,8 @@ export const Content = styled.div`
     align-self: center;
     justify-self: center;
     column-gap: 20px;
-
+    
+    
         form{
             display: grid;
             grid-template-columns: 0.8fr 0.8fr;
@@ -133,41 +135,51 @@ export const Content = styled.div`
                 .ultimo{
                     border-radius: 0px 10px 10px 0px;
                 }
-    }
+            }
           
-        .buttomSimular
-        { 
-            font-weight: bold;
-            border: 2px solid var(--Tex);
-            background: var(--Button-secundario);
-            top: 1px;
-            max-width: 300px;
-            position: relative;
-            right: 15px;
-            width: 100%;
-            padding: 15px 0;
-            font-size: 1rem;
-            border-radius: 10px;
-        }
-        .buttomSimular:hover{
-            background: var(--Button);
-        }
-        .buttomLimpar
-        { 
-            border: 2px solid var(--Tex);
-            top: 1px;
-            max-width: 300px;
-            width: 100%;
-            padding: 15px 0;
-            font-size: 1rem;
-            border-radius: 10px;
-        }
-        .buttomLimpar:hover{
-            background: var(--Button);
+            .buttomSimular
+            { 
+                font-weight: bold;
+                border: 2px solid var(--Tex);
+                background: var(--Button-secundario);
+                top: 1px;
+                max-width: 300px;
+                position: relative;
+                right: 15px;
+                width: 100%;
+                padding: 15px 0;
+                font-size: 1rem;
+                border-radius: 10px;
+            }
+            .buttomSimular:hover{
+                background: var(--Button);
+            }
+            .buttomLimpar
+            { 
+                border: 2px solid var(--Tex);
+                top: 1px;
+                max-width: 300px;
+                width: 100%;
+                padding: 15px 0;
+                font-size: 1rem;
+                border-radius: 10px;
+            }
+            .buttomLimpar:hover{
+                background: var(--Button);
+            }
+    }
+
+}
+
+    @media (max-width: 669px) {
+        div{
+            form{
+            display: grid;
+            grid-template-columns: 1fr;
+            }
         }
     }
-        @media (max-width: 900px){
-            color: red;
+    @media (max-width: 1200px){
             display: grid;
                 grid-template-columns: 1fr;
             div{
@@ -176,18 +188,17 @@ export const Content = styled.div`
             }
         }
 
-}
-
-.IconButton{
-    position: relative;
-    top: 2px;
-    font-weight: bold;
-}
+    .IconButton{
+        position: relative;
+        top: 2px;
+        font-weight: bold;
+    }
 `;
 
 export const Simulacao = styled.section`
    padding-right: 40px;
    padding-left: 40px;
+   padding-bottom: 40px;
     h2{
         margin-top: 50px;
         margin-bottom: 20px;
