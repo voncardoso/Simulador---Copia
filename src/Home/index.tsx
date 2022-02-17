@@ -21,6 +21,11 @@ export function Home(){
     const [texteCorIndexPre , setTextCorIndexPre] = useState('#000000');
     const [texteCorIndexPos, setTextCorIndexPos] = useState('#EFEFEF');
     const [texteCorIndexFixado , setTextCor1IndexFixado] = useState('#000000');
+
+    const [corErroAporteInicial, setCorErrorAporteInicial] = useState('');
+    const [corErroPrazo, setCorErrorPrazo] = useState('');
+    const [corErroAporteMensal, setCorErrorAporteMensal] = useState('');
+    const [corErroRentabilidade, setCorErroRentabilidade] = useState('');
     
     // banco de dados 
     const [indicadores, setIndicadores] = useState<any>([]);
@@ -40,6 +45,9 @@ export function Home(){
     const [errorPrazo, setErrorPrazo] = useState('');
     const [errorAporteMensal, setErrorAporteMensal] = useState('');
     const [errorRentabilidade, setErrorRentabilidade] = useState('');
+
+    const inputElement = useRef<any>();
+
     // variaveis IPCA e CDI com storage
     const [cdi, setCdi] = useState<any>(()=>{
         const storageCdi = localStorage.getItem('cdi');
@@ -117,51 +125,63 @@ export function Home(){
         if(id === 'aporte'){
             if(value.length === 0){
                 setError('');
+                setCorErrorAporteInicial('')
                 return false;
             }else if(!/\d/.test(value)){
                 setError('Aporte deve ser um número');
+                setCorErrorAporteInicial('red')
                 return false;
             }else {
                 setError('');
+                setCorErrorAporteInicial('')
                 return true;
             }
         }else 
             if(id === 'prazo'){
                 if(value.length === 0){
                     setErrorPrazo('');
+                    setCorErrorPrazo('')
                     return false;
                 }else
                 if(!/\d/.test(value)){
                     setErrorPrazo('Prazo deve ser um número');
+                    setCorErrorPrazo('red')
                     return false;
                 }else{
                     setErrorPrazo('');
+                    setCorErrorPrazo('')
                     return true;
                 }
         }else 
             if(id === 'aporteMensal'){
             if(value.length === 0){
                 setErrorAporteMensal('');
+                setCorErrorAporteMensal('')
                 return false;
             }else
             if(!/\d/.test(value)){
                 setErrorAporteMensal('Aporte deve ser um número');
+                setCorErrorAporteMensal('red')
                 return false;
             }else{
                 setErrorAporteMensal('');
+                setCorErrorAporteMensal('')
                 return true;
             }
         }else 
             if(id === 'rentabilidade'){
             if(value.length === 0){
                 setErrorRentabilidade('');
+                setCorErroRentabilidade('')
                 return false;
             }else
             if(!/\d/.test(value)){
                 setErrorRentabilidade('Rentabilidade deve ser um número');
+                 setCorErroRentabilidade('red')
                 return false;
             }else{
                 setErrorRentabilidade('');
+                 setCorErroRentabilidade('')
                 return true;
             }
         }
@@ -258,9 +278,11 @@ export function Home(){
                                 <input 
                                     type="text" 
                                     id='aporte'
+                                    ref={inputElement}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={aporteInicial}
+                                    style={{borderBottom: `2px solid ${corErroAporteInicial}`}}
                                     required
                                 />
                                 {error && <p style={{color: 'red', position:"relative", top: '10px', fontSize:'0.875rem' }}>{error}</p>}
@@ -273,6 +295,7 @@ export function Home(){
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={prazo}
+                                    style={{borderBottom: `2px solid ${corErroPrazo}`}}
                                     required
                                     />
                                     {errorPrazo && <p style={{color: 'red', position:"relative", top: '10px', fontSize:'0.875rem' }}>{errorPrazo}</p>}
@@ -375,6 +398,7 @@ export function Home(){
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={aporteMensal}
+                                    style={{borderBottom: `2px solid ${corErroAporteMensal}`}}
                                     required
                                 />
                                  {errorAporteMensal && <p style={{color: 'red', position:"relative", top: '10px', fontSize:'0.875rem' }}>{errorAporteMensal}</p>}
@@ -387,6 +411,7 @@ export function Home(){
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={rentabilidade}
+                                    style={{borderBottom: `2px solid ${corErroRentabilidade}`}}
                                     required
                                 />
                                 {errorRentabilidade && <p style={{color: 'red', position:"relative", top: '10px', fontSize:'0.875rem' }}>{errorRentabilidade}</p>}
