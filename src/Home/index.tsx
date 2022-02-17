@@ -273,7 +273,7 @@ export function Home(){
                                     </button>
                                 </div>
                             </li>
-                            <li>
+                            <li style={{marginTop: '60px'}}>
                                 <label htmlFor="aporte" >Aporte Inicial</label>
                                 <input 
                                     type="text" 
@@ -287,7 +287,7 @@ export function Home(){
                                 />
                                 {error && <p style={{color: 'red', position:"relative", top: '10px', fontSize:'0.875rem' }}>{error}</p>}
                             </li>
-                            <li>
+                            <li >
                             <label htmlFor="prazo">Prazo(em meses)</label>
                                 <input 
                                     type="text" 
@@ -390,7 +390,7 @@ export function Home(){
                                     </button>
                                 </div>
                         </li>
-                            <li>
+                            <li style={{marginTop: '60px'}}>
                                 <label htmlFor="aporteMensal" >Aporte Mensal</label>
                                 <input 
                                     type="text" 
@@ -430,7 +430,7 @@ export function Home(){
                     </form>
                 
                 <Simulacao style={{display: formStyle}}>
-                    <h2>Simulador</h2>
+                    <h2>Resultado da Simulação</h2>
                     {simulacoes.map((simulacao: any) =>{
                         if(simulacao.tipoIndexacao == tipoIdexacao && simulacao.tipoRendimento == tipoRedeminto)
                         return(

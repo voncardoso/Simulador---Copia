@@ -2,10 +2,6 @@ import styled from "styled-components";
 
 
 export const Container = styled.section`
-    max-width: 1570px;
-    margin: 0 auto;
-    width: 100%;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,43 +10,45 @@ export const Container = styled.section`
 
 
 export const Content = styled.div`
-    max-width: 1500px;
-    width: 98vw;
-    height: 90vh;
+    width: 100%;
+    height: 100%;
+    padding: 50px 60px;
    // background: red;
    background: var(--background-secondary);
     h1{
         text-align: center;
-        margin-top: 30px;
+        margin-top: 0px;
         font-size: 1.75rem;
-        height: 20px;
+        height: 60px;
+        margin-top: 0px;
     }
 
    div{
+    max-width: 1500px;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-content: center;
     align-self: center;
     justify-self: center;
-    column-gap: 20px;
-    
-    
+    column-gap: 30px;
         form{
             display: grid;
             grid-template-columns: 0.8fr 0.8fr;
+            align-content: center;
             column-gap: 20px;
-            margin-left: 40px;
             align-items: center;
-            max-width: 650px;
+            max-width: 600px;
+            width: 100%;
                 ul{
-                    
+                
                     h2{
                         margin-bottom: 20px;
-                        margin-top: 50px;
+                        margin-top: 20px;
                         
                     }
                     li{
-                        width: 280px;
+                        width: 270px;
                         margin-top: 30px;
                         margin-bottom: 20px;
                         height: 70px;
@@ -176,22 +174,33 @@ export const Content = styled.div`
 
 }
 
-    @media (max-width: 669px) {
+    @media (max-width: 1200px){
+        width: 800px;
         div{
+            display: grid;
+            grid-template-columns: 1fr;
+            
+        }
+    }
+
+    @media (max-width: 669px) {
+        width: 450px;
+        h1{
+            margin-top: 500px;
+        }
+        div{
+            width: 275px;
+            margin: 0 auto;
             form{
             display: grid;
             grid-template-columns: 1fr;
+                ul{
+                    
+                }
             }
         }
     }
-    @media (max-width: 1200px){
-            display: grid;
-                grid-template-columns: 1fr;
-            div{
-                display: grid;
-                grid-template-columns: 1fr;
-            }
-        }
+
 
     .IconButton{
         position: relative;
@@ -201,14 +210,16 @@ export const Content = styled.div`
 `;
 
 export const Simulacao = styled.section`
-   padding-right: 40px;
-   padding-left: 40px;
+   
    padding-bottom: 40px;
+   position: relative;
+   top: -30px;
     h2{
         margin-top: 50px;
         margin-bottom: 20px;
     }
     ul{
+        
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         column-gap: 30px;
@@ -235,6 +246,13 @@ export const Simulacao = styled.section`
                 padding-left: 5px;
                 padding-right: 5px;
             }
+        }
+    }
+
+    @media (max-width: 669px){
+        margin-top: 80px;
+        ul{
+            grid-template-columns: 1fr 1fr;
         }
     }
 
