@@ -3,6 +3,7 @@ import { FiAlertCircle } from "react-icons/fi";
 import { AiOutlineCheck } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { useEffect, useRef, useState } from 'react';
+import { Console } from 'console';
 
 
 
@@ -34,7 +35,11 @@ export function Home(){
     const [rentabilidade, setRentabilidade] = useState('');
     const [formStyle, setFormStyle] = useState<any>('none');
 
-    const simulacao = useRef();
+    // variaveis de validação
+    const [error, setError] = useState('');
+    const [errorPrazo, setErrorPrazo] = useState('');
+    const [errorAporteMensal, setErrorAporteMensal] = useState('');
+    const [errorRentabilidade, setErrorRentabilidade] = useState('');
     // variaveis IPCA e CDI com storage
     const [cdi, setCdi] = useState<any>(()=>{
         const storageCdi = localStorage.getItem('cdi');
@@ -62,20 +67,18 @@ export function Home(){
     
 
      useEffect(()=>{
-         console.log('teste')
+        
         fetch('http://localhost:3000/indicadores')
         .then((response: any) => response.json())
         .then((json) => setIndicadores(json));
     }, []);
 
     useEffect(()=>{
-        console.log('teste')
+        
         fetch('http://localhost:3000/simulacoes') 
         .then((response: any) => response.json())
         .then((json) => setSimulacoes(json));
    }, []);
-
-   console.log('simulaçoes', simulacoes);
 
     useEffect(()=>{
         if(indicadores[0]){
@@ -93,11 +96,13 @@ export function Home(){
         localStorage.setItem('ipca', JSON.stringify(ipca));
     }
 
+    // ativa o simulador
     function handleSimulador(event: any){
         event.preventDefault();
         setFormStyle('block');
     }
 
+    // limpa todos os campos
     function handleClear(event: any){
         event.preventDefault();
         setFormStyle('none');
@@ -105,6 +110,95 @@ export function Home(){
         setAporteMensal('');
         setPrazo('');
         setRentabilidade('');
+    }
+
+    // validação dos campos
+    function validate(value: any, id: any){
+        if(id === 'aporte'){
+            if(value.length === 0){
+                setError('');
+                return false;
+            }else if(!/\d/.test(value)){
+                setError('Aporte deve ser um número');
+                return false;
+            }else {
+                setError('');
+                return true;
+            }
+        }else 
+            if(id === 'prazo'){
+                if(value.length === 0){
+                    setErrorPrazo('');
+                    return false;
+                }else
+                if(!/\d/.test(value)){
+                    setErrorPrazo('Prazo deve ser um número');
+                    return false;
+                }else{
+                    setErrorPrazo('');
+                    return true;
+                }
+        }else 
+            if(id === 'aporteMensal'){
+            if(value.length === 0){
+                setErrorAporteMensal('');
+                return false;
+            }else
+            if(!/\d/.test(value)){
+                setErrorAporteMensal('Aporte deve ser um número');
+                return false;
+            }else{
+                setErrorAporteMensal('');
+                return true;
+            }
+        }else 
+            if(id === 'rentabilidade'){
+            if(value.length === 0){
+                setErrorRentabilidade('');
+                return false;
+            }else
+            if(!/\d/.test(value)){
+                setErrorRentabilidade('Rentabilidade deve ser um número');
+                return false;
+            }else{
+                setErrorRentabilidade('');
+                return true;
+            }
+        }
+        
+    }
+
+    function handleBlur(event: any){
+        validate(event.target.value, event.target.id);
+    }
+
+    function handleChange(event: any){
+        if(event.target.id === 'aporte'){
+            if(error){
+                validate(event.target.value, event.target.id);
+            }
+              setAporteInicial(event.target.value);
+        }else 
+            if(event.target.id === 'prazo'){
+            if(errorPrazo){
+                validate(event.target.value, event.target.id);
+            }
+              setPrazo(event.target.value);
+        }
+        else if(event.target.id === 'aporteMensal'){
+            if(errorAporteMensal){
+                validate(event.target.value, event.target.id);
+            }
+              setAporteMensal(event.target.value);
+        }
+        else if(event.target.id === 'rentabilidade'){
+           
+            if(errorRentabilidade){
+                validate(event.target.value, event.target.id);
+            }
+              setRentabilidade(event.target.value);
+        }
+     
     }
 
     return(
@@ -164,24 +258,24 @@ export function Home(){
                                 <input 
                                     type="text" 
                                     id='aporte'
-                                    onChange={(event: any)=>{
-                                        setAporteInicial(event.target.value)
-                                    }}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                     value={aporteInicial}
                                     required
-                                    />
+                                />
+                                {error && <p style={{color: 'red', position:"relative", top: '10px', fontSize:'0.875rem' }}>{error}</p>}
                             </li>
                             <li>
-                            <label htmlFor="">Prazo(em meses)</label>
+                            <label htmlFor="prazo">Prazo(em meses)</label>
                                 <input 
                                     type="text" 
-                                    id='aporte'
-                                    onChange={(event: any)=>{
-                                        setPrazo(event.target.value)
-                                    }}
+                                    id='prazo'
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                     value={prazo}
                                     required
                                     />
+                                    {errorPrazo && <p style={{color: 'red', position:"relative", top: '10px', fontSize:'0.875rem' }}>{errorPrazo}</p>}
                             </li>
                             <li>
                             <label htmlFor="">IPCA(ao ano)</label>
@@ -274,27 +368,28 @@ export function Home(){
                                 </div>
                         </li>
                             <li>
-                                <label htmlFor="aporte" >Aporte Mensal</label>
+                                <label htmlFor="aporteMensal" >Aporte Mensal</label>
                                 <input 
                                     type="text" 
-                                    id='aporte'
-                                    onChange={(event: any)=>{
-                                        setAporteMensal(event.target.value)
-                                    }}
+                                    id='aporteMensal'
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                     value={aporteMensal}
                                     required
                                 />
+                                 {errorAporteMensal && <p style={{color: 'red', position:"relative", top: '10px', fontSize:'0.875rem' }}>{errorAporteMensal}</p>}
                             </li>
                             <li>
-                            <label htmlFor="">Rentabilidade</label>
+                            <label htmlFor="rentabilidade">Rentabilidade</label>
                                 <input 
                                     type="text"  
-                                    onChange={(event: any)=>{
-                                        setRentabilidade(event.target.value)
-                                    }}
+                                    id='rentabilidade'
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                     value={rentabilidade}
                                     required
                                 />
+                                {errorRentabilidade && <p style={{color: 'red', position:"relative", top: '10px', fontSize:'0.875rem' }}>{errorRentabilidade}</p>}
                             </li>
                             <li>
                             <label htmlFor="">CDI(ao ano)</label>

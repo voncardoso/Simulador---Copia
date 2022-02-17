@@ -15,14 +15,15 @@ export const Container = styled.section`
 
 export const Content = styled.div`
     max-width: 1500px;
-    width: 98%;
-    height: 95%;
+    width: 98vw;
+    height: 90vh;
    // background: red;
    background: var(--background-secondary);
     h1{
         text-align: center;
         margin-top: 30px;
         font-size: 1.75rem;
+        height: 20px;
     }
 
    div{
@@ -50,6 +51,9 @@ export const Content = styled.div`
                     }
                     li{
                         width: 280px;
+                        margin-top: 30px;
+                        margin-bottom: 20px;
+                        height: 70px;
 
                         .texteIcon{
                             display: flex;
@@ -86,15 +90,16 @@ export const Content = styled.div`
                         }
                         label{
                             font-weight: normal;
-                            font-size: 0.875rem
+                            font-size: 0.875rem;
+                           // margin-top: 20px;
                         }
                         input{
                             width: 100%;
                             border: none;
                             background: var(--background-secondary);
                             border-bottom: 2px solid var(--Tex);
-                            margin-bottom: 40px;
-                            margin-top: 20px;
+                            //margin-bottom: 20px;
+                            margin-top: 10px;
                             outline: none;
                             font-size: 1rem;
                             font-weight: 600;
