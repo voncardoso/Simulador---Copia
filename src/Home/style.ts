@@ -2,30 +2,23 @@ import styled from "styled-components";
 
 
 export const Container = styled.section`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-`;
-
-
-export const Content = styled.div`
-    width: 100%;
-    height: 100%;
-    padding: 50px 60px;
-   // background: red;
-   background: var(--background-secondary);
+    border: 20px solid var(--background);
+    padding: 0 60px;
+    
+    padding-bottom: 50px;
+    background: var(--background-secondary);
     h1{
         text-align: center;
         margin-top: 0px;
         font-size: 1.75rem;
         height: 60px;
-        margin-top: 0px;
+        margin-top: 40px;
     }
 
    div{
     max-width: 1500px;
     width: 100%;
+    
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-content: center;
@@ -39,12 +32,13 @@ export const Content = styled.div`
             column-gap: 20px;
             align-items: center;
             max-width: 600px;
+            //height: 615px;
             width: 100%;
                 ul{
                 
                     h2{
                         margin-bottom: 20px;
-                        margin-top: 20px;
+                        //margin-top: 20px;
                         
                     }
                     li{
@@ -175,7 +169,6 @@ export const Content = styled.div`
 }
 
     @media (max-width: 1200px){
-        width: 800px;
         div{
             display: grid;
             grid-template-columns: 1fr;
@@ -185,9 +178,6 @@ export const Content = styled.div`
 
     @media (max-width: 669px) {
         width: 450px;
-        h1{
-            margin-top: 500px;
-        }
         div{
             width: 275px;
             margin: 0 auto;
@@ -199,8 +189,13 @@ export const Content = styled.div`
                 }
             }
         }
+        .buttomSimular
+        { 
+            margin-top: 10px;
+            position: relative;
+            left: 0px;
+        }
     }
-
 
     .IconButton{
         position: relative;
@@ -209,13 +204,12 @@ export const Content = styled.div`
     }
 `;
 
+
+
+
 export const Simulacao = styled.section`
-   
-   padding-bottom: 40px;
-   position: relative;
-   top: -30px;
     h2{
-        margin-top: 50px;
+        //margin-top: 50px;
         margin-bottom: 20px;
     }
     ul{
@@ -224,7 +218,6 @@ export const Simulacao = styled.section`
         grid-template-columns: 1fr 1fr 1fr;
         column-gap: 30px;
         align-self: center;
-        height: 200px;
         li{
             width: 60px;
             width: 100%;
@@ -248,9 +241,15 @@ export const Simulacao = styled.section`
             }
         }
     }
+    .chart{
+        display: block;
+    }
+    @media (max-width: 1200px){
+        margin-top: 40px;
+    }
 
     @media (max-width: 669px){
-        margin-top: 80px;
+        
         ul{
             grid-template-columns: 1fr 1fr;
         }

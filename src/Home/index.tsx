@@ -1,9 +1,8 @@
-import {Container, Content, Simulacao } from './style';
+import {Container, Simulacao } from './style';
 import { FiAlertCircle } from "react-icons/fi";
 import { AiOutlineCheck } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { useEffect, useRef, useState } from 'react';
-import { Console } from 'console';
 
 
 
@@ -222,8 +221,8 @@ export function Home(){
     }
 
     return(
+        <>
         <Container>
-            <Content>
                 <h1>Simulador de Investimentos</h1>
                 <div>
                 
@@ -430,10 +429,12 @@ export function Home(){
                     </form>
                 
                 <Simulacao style={{display: formStyle}}>
+                    
                     <h2>Resultado da Simulação</h2>
                     {simulacoes.map((simulacao: any) =>{
                         if(simulacao.tipoIndexacao == tipoIdexacao && simulacao.tipoRendimento == tipoRedeminto)
                         return(
+                            <>
                             <ul>
                                 <li>
                                     Valor Final Bruto
@@ -459,13 +460,15 @@ export function Home(){
                                     Ganho Líquido
                                     <p className='Pgreen'>{`R$ ${simulacao.ganhoLiquido}`}</p>
                                 </li>
+                               
                         </ul>
+                      </>
                         )
                     })}
                 </Simulacao>
                 </div>
-            </Content>
-            
+                
         </Container>
+        </>
     )
 }
