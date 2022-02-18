@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 
 
 
+
 export function Home(){
     // variaveis para alterar cor do butão do tipo de remdimento
     const [corLiquido, setCorLiquido] = useState('#ED8E53');
@@ -38,7 +39,6 @@ export function Home(){
     const [aporteMensal, setAporteMensal] = useState('');
     const [rentabilidade, setRentabilidade] = useState('');
     const [formStyle, setFormStyle] = useState<any>('none');
-
     // variaveis de validação
     const [error, setError] = useState('');
     const [errorPrazo, setErrorPrazo] = useState('');
@@ -46,6 +46,10 @@ export function Home(){
     const [errorRentabilidade, setErrorRentabilidade] = useState('');
 
     const inputElement = useRef<any>();
+
+   
+
+    
 
     // variaveis IPCA e CDI com storage
     const [cdi, setCdi] = useState<any>(()=>{
@@ -192,6 +196,7 @@ export function Home(){
     }
 
     function handleChange(event: any){
+
         if(event.target.id === 'aporte'){
             if(error){
                 validate(event.target.value, event.target.id);
@@ -225,7 +230,6 @@ export function Home(){
         <Container>
                 <h1>Simulador de Investimentos</h1>
                 <div>
-                
                     <form className='formTotal' onSubmit={handleSimulador}>
                     
                         <ul className='form'>
@@ -275,7 +279,7 @@ export function Home(){
                             <li style={{marginTop: '60px'}}>
                                 <label htmlFor="aporte" >Aporte Inicial</label>
                                 <input 
-                                    type="text" 
+                                    type="number" 
                                     id='aporte'
                                     ref={inputElement}
                                     onChange={handleChange}
